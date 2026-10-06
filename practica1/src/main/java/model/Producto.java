@@ -6,37 +6,50 @@ public class Producto {
     private UUID id;
     private String nombre;
     private int precio;
-    private int Stock;
+    private int stock;
 
     private Producto(UUID id, String nombre, int precio, int stock) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
-        Stock = stock;
+        this.stock = stock;
     }
 
     public static Producto getNewInstance(UUID id, String nombre, int precio, int stock) {
-        return null;
+        if(id==null){
+            throw new ExceptionProducto("No se puede crear un producto con id nula");
+        }
+        if(nombre==null||nombre.isBlank()){
+            throw new ExceptionProducto("el nombre no es valido");
+
+        }
+        if(precio<1){
+            throw  new ExceptionProducto("Precio no valido");
+        }
+        if (stock<0){
+            throw  new ExceptionProducto("stock no valido");
+        }
+        return new  Producto(id, nombre, precio, stock);
     }
 
     public String getNombre() {
-        return null;
+        return nombre;
     }
 
     public UUID getId() {
-        return null;
+        return id;
     }
 
     public int getPrecio() {
-        return -222;
+        return precio;
     }
 
     public int getStock() {
-        return -123;
+        return stock;
     }
 
     @Override
     public String toString() {
-        return null;
+        return nombre.toLowerCase()+" "+precio+" "+stock;
     }
 }

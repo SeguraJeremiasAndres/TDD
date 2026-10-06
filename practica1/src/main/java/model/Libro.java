@@ -16,27 +16,39 @@ public class Libro {
     }
 
     public static Libro getNewInstance(UUID id, String titulo, String autor, int paginas) {
-        return null;
+        if(id==null){
+            throw new ExceptionLibro("el id no puede ser nulo");
+        }
+        if(titulo==null||titulo.isBlank()){
+            throw new ExceptionLibro("el titulo no es valido");
+        }
+        if(autor==null||autor.isBlank()){
+            throw new ExceptionLibro("el autor no es valido");
+        }
+        if(paginas<=0){
+            throw new ExceptionLibro("el paginas no valida");
+        }
+        return new Libro(id, titulo, autor, paginas);
     }
 
     public UUID getId() {
-        return null;
+        return id;
     }
 
     public String getTitulo() {
-        return null;
+        return titulo;
     }
 
     public String getAutor() {
-        return null;
+        return autor;
     }
 
     public int getPaginas() {
-        return -123;
+        return paginas;
     }
 
     @Override
     public String toString() {
-        return null;
+        return titulo.toLowerCase()+" "+paginas;
     }
 }
