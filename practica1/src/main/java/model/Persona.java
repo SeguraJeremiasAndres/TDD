@@ -15,28 +15,42 @@ public class Persona {
         this.edad = edad;
     }
 
-    public static Persona getNewInstance(UUID id, String nombre, String apellid0, int edad) {
-        return null;
+    public static Persona getNewInstance(UUID id, String nombre, String apellido, int edad) {
+        if(id==null) {
+            throw new  ExceptionPersona("ID no valido");
+        }
+        if(nombre==null||nombre.isBlank()) {
+            throw new  ExceptionPersona("Nombre no valido");
+        }
+        if(apellido==null||apellido.isBlank()) {
+            throw  new  ExceptionPersona("Apellido no valido");
+        }
+        if(edad<1) {
+            throw new  ExceptionPersona("Edad no valida");
+        }
+        return new Persona(id,nombre,apellido,edad);
     }
 
     public UUID getId() {
-        return null;
+        return id;
     }
 
     public String getNombre() {
-        return null;
+        return nombre;
     }
 
     public String getApellido() {
-        return null;
+        return apellido;
     }
 
     public int getEdad() {
-        return -30;
+        return edad;
     }
-
+    //formato del toString primeras 2 letras en mayusculas ultimas 2 del apelllido y la edad
     @Override
     public String toString() {
-        return "";
+        String aux=nombre.toUpperCase().substring(0,2);
+        String aux2=apellido.toLowerCase().substring(apellido.length()-2,apellido.length());
+        return aux+aux2+edad;
     }
 }
